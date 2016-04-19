@@ -70,11 +70,10 @@
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeTick) userInfo:nil repeats:YES];
     
     /*需加载mp3的文件路径*/
-    NSString *path = [NSString stringWithFormat:@"%@/123.mp3",[[NSBundle mainBundle] resourcePath]];
-    //NSString *path = [[NSBundle mainBundle] pathForResource:@"27836541" ofType:@"mp3"];
+   // NSString *path = [NSString stringWithFormat:@"%@/123.mp3",[[NSBundle mainBundle] resourcePath]];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"27836541" ofType:@"mp3"];
     NSURL *url = [NSURL fileURLWithPath:path];
     
-    //No.1
     //开始写代码，创建一个音乐播放器，完成播放功能及相应设置，其中设置默认音量为5。
     _audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:nil];
     
@@ -83,20 +82,17 @@
     
     [_audioPlayer prepareToPlay];
 
-    //end_code
 }
 
 - (void)timeTick{
-    //No.2
+    
     //开始写代码，实现定时器的执行方法，根据播放器播放进度更新进度滑块位置
     _timeSlider.value = _audioPlayer.currentTime/_audioPlayer.duration;
-    //end_code
 }
 
 
 /*按钮点击事件*/
 - (void)btnClick:(UIButton *)btn{
-    //No.3
     //开始写代码，实现按钮点击事件，在正确的位置实现播放器播放、暂停和停止功能
     if(btn.tag == 100){
         if(_audioPlayer.isPlaying){
@@ -121,7 +117,6 @@
         
         
     }
-    //end_code
 }
 
 /*播放时旋转图片的方法*/
@@ -145,17 +140,15 @@
 
 
 - (void)sliderClick:(UISlider *)slider{
-    //No.4
+
     //开始写代码，完成滑块的响应事件（分别调节播放进度和调节音量功能）
     if(slider.tag == 200){
         _timeSlider.value = _audioPlayer.currentTime/_audioPlayer.duration;
     }
     
-        else if(slider.tag == 201){
+    else if(slider.tag == 201){
             _audioPlayer.volume = slider.value;
-        }
-    
-            //end_code
+    }
 }
 
 #pragma mark - AVAudioPlayerDelegate
